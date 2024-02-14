@@ -2,34 +2,27 @@ using System;
 
 class Program
 {
-    static int Ackermann(int m, int n)
+    static void PrintArrayReverse(int[] array, int index)
     {
-        if (m == 0)
+        if (index >= 0)
         {
-            return n + 1;
-        }
-        else if (m > 0 && n == 0)
-        {
-            return Ackermann(m - 1, 1);
-        }
-        else if (m > 0 && n > 0)
-        {
-            return Ackermann(m - 1, Ackermann(m, n - 1));
-        }
-        else
-        {
-            // В этом случае можно выбрать подходящее значение (например, -1) в зависимости от задачи.
-            return -1;
+            Console.Write($"{array[index]} ");
+            PrintArrayReverse(array, index - 1);
         }
     }
 
     static void Main()
     {
         // Пример использования
-        int m = 2;
-        int n = 1;
+        int[] myArray = { 1, 2, 3, 4, 5 };
+        
+        Console.WriteLine("Исходный массив:");
+        foreach (var item in myArray)
+        {
+            Console.Write($"{item} ");
+        }
 
-        int result = Ackermann(m, n);
-        Console.WriteLine($"A({m}, {n}) = {result}");
+        Console.WriteLine("\nМассив в обратном порядке:");
+        PrintArrayReverse(myArray, myArray.Length - 1);
     }
 }
