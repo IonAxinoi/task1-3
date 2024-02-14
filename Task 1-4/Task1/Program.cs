@@ -1,22 +1,35 @@
-﻿using System;
+using System;
 
 class Program
 {
-    static void PrintNaturalNumbers(int m, int n)
+    static int Ackermann(int m, int n)
     {
-        if (m <= n)
+        if (m == 0)
         {
-            Console.Write($"{m} ");
-            PrintNaturalNumbers(m + 1, n);
+            return n + 1;
+        }
+        else if (m > 0 && n == 0)
+        {
+            return Ackermann(m - 1, 1);
+        }
+        else if (m > 0 && n > 0)
+        {
+            return Ackermann(m - 1, Ackermann(m, n - 1));
+        }
+        else
+        {
+            // В этом случае можно выбрать подходящее значение (например, -1) в зависимости от задачи.
+            return -1;
         }
     }
 
     static void Main()
     {
         // Пример использования
-        int M = 1; // начальное значение
-        int N = 10; // конечное значение
+        int m = 2;
+        int n = 1;
 
-        PrintNaturalNumbers(M, N);
+        int result = Ackermann(m, n);
+        Console.WriteLine($"A({m}, {n}) = {result}");
     }
 }
